@@ -169,7 +169,7 @@ yunohost service add $service --description "ZeroTier" --log "/var/log/$app/$app
 # DISPLAY ADDRESS
 #=================================================
 
-address=${cat /var/lib/zerotier-one/identity.public | cut -d : -f 1}
+address=$(cat /var/lib/zerotier-one/identity.public | cut -d : -f 1)
 ynh_app_setting_set $app address $address
 ynh_print_info "Success! You are ZeroTier address $address"
 ynh_print_info "You can install ztncui_ynh to get a web configuration interface for ZeroTier"
