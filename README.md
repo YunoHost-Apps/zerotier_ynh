@@ -9,21 +9,16 @@
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
 ## Overview
-Quick description of this app.
+Zerotier sets up Global Area Networks. It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 **Shipped version:** 1.4.6
 
-## Screenshots
-
-![](Link to an screenshot for this app)
-
-## Demo
-
-* [Official demo](Link to a demo site for this app)
-
 ## Configuration
 
-This app only installs the ZeroTier service and sets it up.
+This app only installs the ZeroTier service and sets it up. Use `zerotier-cli` to configure your connections.
+
+If you want to set a network up, use the [ztncui_ynh](https://github.com/tituspijean/ztncui_ynh) app.
+After creating a network, join it with `zerotier-cli join $the_networkd_id`.
 
 ## Documentation
 
@@ -57,6 +52,7 @@ https://yunohost.org/packaging_apps
 
  * Report a bug: https://github.com/YunoHost-Apps/zerotier_ynh/issues
  * Upstream app repository: https://github.com/zerotier/ZeroTierOne
+ * Companion app repository, to configure networks: https://github.com/tituspijean/ztncui_ynh
  * YunoHost website: https://yunohost.org/
 
 ---
