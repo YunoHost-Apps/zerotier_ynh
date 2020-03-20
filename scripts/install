@@ -60,6 +60,13 @@ final_path=/var/lib/zerotier-one
 test ! -e "$final_path" || ynh_die --message="ZeroTier One directory already exists"
 
 #=================================================
+# STORE SETTINGS FROM MANIFEST
+#=================================================
+ynh_script_progression --message="Storing installation settings..." --time --weight=1
+
+ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+
+#=================================================
 # STANDARD MODIFICATIONS
 #=================================================
 # FIND AND OPEN A PORT
@@ -104,7 +111,8 @@ ynh_install_app_dependencies $pkg_dependencies
 # SET THE PORT
 #=================================================
 
-echo $port >> /var/lib/zerotier-one/zerotier-one.port
+cp ../conf/local.conf $final_path/
+ynh_replace_string "__PORT__" "$port" "$final_path/local.conf"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -122,7 +130,7 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 # Enable a systemd service
 ynh_systemd_action --service_name=$service --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name=$service --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=$service --action="restart" --log_path="/var/log/$app/$app.log"
 
 #=================================================
 # GENERATING IDENTITY
