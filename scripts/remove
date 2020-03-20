@@ -17,6 +17,8 @@ ynh_script_progression --message="Loading installation settings..." --time --wei
 
 app=$YNH_APP_INSTANCE_NAME
 
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+
 #=================================================
 # STANDARD REMOVE
 #=================================================
@@ -38,6 +40,14 @@ ynh_script_progression --message="Removing dependencies..." --time --weight=1
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
 ynh_remove_extra_repo
+
+#=================================================
+# REMOVE APP MAIN DIR
+#=================================================
+ynh_script_progression --message="Removing app main directory..." --time --weight=1
+
+# Remove the app directory securely
+ynh_secure_remove --file="$final_path"
 
 #=================================================
 # REMOVE LOGROTATE CONFIGURATION

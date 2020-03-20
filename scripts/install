@@ -55,6 +55,10 @@ if [ -f /usr/sbin/zerotier-one ]; then
 	ynh_die --message="ZeroTier One appears to already be installed."
 fi
 
+# Detect already-installed on Linux
+final_path=/var/lib/zerotier-one
+test ! -e "$final_path" || ynh_die --message="ZeroTier One directory already exists"
+
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
