@@ -101,6 +101,12 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 # SPECIFIC SETUP
 #=================================================
+# SET THE PORT
+#=================================================
+
+echo $port >> /var/lib/zerotier-one/zerotier-one.port
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --time --weight=1
