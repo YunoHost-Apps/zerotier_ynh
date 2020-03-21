@@ -55,6 +55,18 @@ if [ -f /usr/sbin/zerotier-one ]; then
 	ynh_die --message="ZeroTier One appears to already be installed."
 fi
 
+# Detect already-installed on Linux
+final_path=/var/lib/zerotier-one
+test ! -e "$final_path" || ynh_die --message="ZeroTier One directory already exists"
+
+#=================================================
+# STORE SETTINGS FROM MANIFEST
+#=================================================
+ynh_script_progression --message="Storing installation settings..." --time --weight=1
+
+ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+ynh_app_setting_set --app=$app --key=service --value=$service
+
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
@@ -97,6 +109,13 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 # SPECIFIC SETUP
 #=================================================
+# SET THE PORT
+#=================================================
+
+cp ../conf/local.conf $final_path/
+ynh_replace_string "__PORT__" "$port" "$final_path/local.conf"
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --time --weight=1
@@ -112,7 +131,7 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 # Enable a systemd service
 ynh_systemd_action --service_name=$service --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name=$service --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=$service --action="restart" --log_path="/var/log/$app/$app.log"
 
 #=================================================
 # GENERATING IDENTITY
