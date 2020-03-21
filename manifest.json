@@ -8,7 +8,7 @@
     },
     "version": "1.4.6~ynh1",
     "url": "https://www.zerotier.com/",
-    "license": "gpl",
+    "license": "free",
     "maintainer": {
         "name": "tituspijean",
         "email": "tituspijean@outlook.com"
@@ -16,6 +16,7 @@
     "requirements": {
         "yunohost": ">= 3.5"
     },
+    "services": [],
     "multi_instance": false,
     "arguments": {
         "install" : []

@@ -65,6 +65,7 @@ test ! -e "$final_path" || ynh_die --message="ZeroTier One directory already exi
 ynh_script_progression --message="Storing installation settings..." --time --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+ynh_app_setting_set --app=$app --key=service --value=$service
 
 #=================================================
 # STANDARD MODIFICATIONS
