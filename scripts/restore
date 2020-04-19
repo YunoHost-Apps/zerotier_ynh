@@ -63,7 +63,7 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 ynh_script_progression --message="Restoring the systemd configuration..." --time --weight=1
 
-ynh_restore_file --origin_path="/etc/init.d/$service"
+ynh_restore_file --origin_path="/lib/systemd/system/$service.service"
 systemctl enable $service
 
 #=================================================
