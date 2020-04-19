@@ -64,15 +64,11 @@ ynh_systemd_action --service_name=$service --action="stop" --log_path="/var/log/
 #=================================================
 ynh_script_progression --message="Upgrading dependencies..." --time --weight=1
 
-ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --time --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_install_extra_repo --repo="deb ${ZT_BASE_URL_HTTP}debian/stretch stretch main" --key="https://raw.githubusercontent.com/zerotier/install.zerotier.com/master/htdocs/contact%40zerotier.com.gpg"
+	ynh_install_app_dependencies $pkg_dependencies
+fi
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -96,13 +92,6 @@ ynh_use_logrotate --non-append
 ynh_script_progression --message="Starting a systemd service..." --time --weight=1
 
 ynh_systemd_action --service_name=$service --action="start" --log_path="/var/log/$app/$app.log"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading nginx web server..." --time --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
