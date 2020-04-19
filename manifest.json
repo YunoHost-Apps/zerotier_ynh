@@ -3,12 +3,12 @@
     "id": "zerotier",
     "packaging_format": 1,
     "description": {
-        "en": "ZeroTier allows all networked devices, VMs, containers, and applications to communicate as if they all reside in the same network.",
-        "fr": "ZeroTier permet à des appareils, des machines virtuelles, des conteneurs, et des applications de communiquer comme si ils étaient sur le même réseau."
+        "en": "ZeroTier allows all networked devices, VMs, containers, to communicate as if they all reside in the same network.",
+        "fr": "ZeroTier permet à des appareils, des machines virtuelles, des conteneurs, de communiquer comme si ils étaient sur le même réseau."
     },
-    "version": "1.4.6~ynh1",
+    "version": "1.4.6~ynh2",
     "url": "https://www.zerotier.com/",
-    "license": "free",
+    "license": "non-free",
     "maintainer": {
         "name": "tituspijean",
         "email": "tituspijean@outlook.com"
