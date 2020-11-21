@@ -96,7 +96,7 @@ yunohost service add $service --description "ZeroTier"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$service --action="start" --log_path="systemd" --line_match="Started ZeroTier One"
+ynh_systemd_action --service_name=$service --action="start"
 
 #=================================================
 # END OF SCRIPT

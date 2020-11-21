@@ -75,7 +75,7 @@ yunohost service add $app --description "A short description of the app"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
-ynh_systemd_action --service_name=$service --action="start" --log_path="systemd" --line_match="Started ZeroTier One"
+ynh_systemd_action --service_name=$service --action="start"
 
 #=================================================
 # GENERIC FINALIZATION
