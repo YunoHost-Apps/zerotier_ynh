@@ -24,7 +24,7 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --time --weight=1
+ynh_print_info --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -34,16 +34,9 @@ service=$(ynh_app_setting_get --app=$app --key=service)
 #=================================================
 # STANDARD BACKUP STEPS
 #=================================================
-# STOP SYSTEMD SERVICE
-#=================================================
-ynh_script_progression --message="Stopping a systemd service..." --time --weight=1
-
-ynh_systemd_action --service_name=$service --action="stop" --log_path="systemd" --line_match="Stopped ZeroTier One"
-
-#=================================================
 # BACKUP THE APP MAIN DIR
 #=================================================
-ynh_script_progression --message="Backing up the main app directory..." --time --weight=1
+ynh_print_info --message="Backing up the main app directory..."
 
 ynh_backup --src_path="$final_path"
 
@@ -52,19 +45,12 @@ ynh_backup --src_path="$final_path"
 #=================================================
 # BACKUP SYSTEMD
 #=================================================
-ynh_script_progression --message="Backing up systemd configuration..." --time --weight=1
+ynh_print_info --message="Backing up systemd configuration..."
 
 ynh_backup --src_path="/lib/systemd/system/$service.service"
-
-#=================================================
-# START SYSTEMD SERVICE
-#=================================================
-ynh_script_progression --message="Starting a systemd service..." --time --weight=1
-
-ynh_systemd_action --service_name=$service --action="start" --log_path="systemd" --line_match="Started ZeroTier One"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Backup script completed for $app. (YunoHost will then actually copy those files to the archive)." --time --last
+ynh_print_info --message="Backup script completed for $app. (YunoHost will then actually copy those files to the archive)."
