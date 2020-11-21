@@ -55,8 +55,7 @@ ynh_restore_file --origin_path="$final_path"
 #=================================================
 ynh_script_progression --message="Reinstalling dependencies..." --time --weight=1
 
-ynh_install_extra_repo --repo="deb ${ZT_BASE_URL_HTTP}debian/stretch stretch main" --key="https://raw.githubusercontent.com/zerotier/install.zerotier.com/master/htdocs/contact%40zerotier.com.gpg"
-ynh_install_app_dependencies $pkg_dependencies
+ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/stretch stretch main" --key="https://raw.githubusercontent.com/zerotier/install.zerotier.com/master/htdocs/contact%40zerotier.com.gpg" --package="${pkg_zerotier}=${pkg_version}"
 
 #=================================================
 # RESTORE SYSTEMD
@@ -70,20 +69,14 @@ systemctl enable $service
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
 
-yunohost service add $app --description "A short description of the app" --log "/var/log/$app/$app.log"
+yunohost service add $app --description "A short description of the app"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --time --weight=1
 
-ynh_systemd_action --service_name=$service --action="start" --log_path="/var/log/$app/$app.log"
-
-#=================================================
-# RESTORE THE LOGROTATE CONFIGURATION
-#=================================================
-
-ynh_restore_file --origin_path="/etc/logrotate.d/$app"
+ynh_systemd_action --service_name=$service --action="start" --log_path="systemd" --line_match="Started ZeroTier One"
 
 #=================================================
 # GENERIC FINALIZATION

@@ -130,7 +130,7 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 # Enable a systemd service
 ynh_systemd_action --service_name=$service --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name=$service --action="restart" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=$service --action="restart" --log_path="systemd" --line_match="Started ZeroTier One"
 
 #=================================================
 # GENERATING IDENTITY
@@ -146,22 +146,6 @@ ynh_print_info "Identity generation done!"
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Configuring log rotation..." --time --weight=1
-
-### `ynh_use_logrotate` is used to configure a logrotate configuration for the logs of this app.
-### Use this helper only if there is effectively a log file for this app.
-### If you're not using this helper:
-###		- Remove the section "BACKUP LOGROTATE" in the backup script
-###		- Remove also the section "REMOVE LOGROTATE CONFIGURATION" in the remove script
-###		- As well as the section "RESTORE THE LOGROTATE CONFIGURATION" in the restore script
-###		- And the section "SETUP LOGROTATE" in the upgrade script
-
-# Use logrotate to manage application logfile(s)
-ynh_use_logrotate
-
-#=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
 
@@ -173,7 +157,7 @@ ynh_use_logrotate
 ###		- Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
 ###		- As well as the section "ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
 
-yunohost service add $service --description "ZeroTier" --log "/var/log/$app/$app.log"
+yunohost service add $service --description "ZeroTier"
 
 ### With YunoHost 3.8 you will then be able to:
 ### - specify a list of ports that needs to be publicly exposed (c.f. --needs_exposed_ports)
