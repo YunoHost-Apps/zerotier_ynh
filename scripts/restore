@@ -62,7 +62,7 @@ ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$versi
 ynh_script_progression --message="Restoring the systemd configuration..." --weight=1
 
 ynh_restore_file --origin_path="/lib/systemd/system/$service.service"
-systemctl enable $service
+systemctl enable $service --quiet
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
