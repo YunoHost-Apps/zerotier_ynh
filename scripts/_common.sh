@@ -1,5 +1,7 @@
 #!/bin/bash
 
+version_codename=$(awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release)
+
 #=================================================
 # COMMON VARIABLES
 #=================================================
@@ -10,7 +12,7 @@ service="zerotier-one"
 
 # dependencies used by the app
 pkg_zerotier="zerotier-one"
-pkg_version="1.6.2"
+pkg_version="1.6.2-2"
 
 #=================================================
 # PERSONAL HELPERS
