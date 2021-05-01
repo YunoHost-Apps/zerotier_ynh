@@ -6,7 +6,7 @@
         "en": "ZeroTier allows all networked devices, VMs, containers, to communicate as if they all reside in the same network.",
         "fr": "ZeroTier permet à des appareils, des machines virtuelles, des conteneurs, de communiquer comme si ils étaient sur le même réseau."
     },
-    "version": "1.6.2~ynh1",
+    "version": "1.6.5~ynh1",
     "url": "https://www.zerotier.com/",
     "license": "non-free",
     "maintainer": {
