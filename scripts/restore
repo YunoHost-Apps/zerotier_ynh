@@ -68,7 +68,7 @@ systemctl enable $service --quiet
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
 
-yunohost service add $app --description "ZeroTier"
+yunohost service add $service --description ZeroTier
 
 #=================================================
 # START SYSTEMD SERVICE
