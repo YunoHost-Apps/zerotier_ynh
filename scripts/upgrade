@@ -57,7 +57,7 @@ ynh_abort_if_errors
 #=================================================
 ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$service --action="stop" --log_path="systemd" --line_match="Stopped ZeroTier One"
+ynh_systemd_action --service_name=$service --action="stop" --log_path="systemd" --line_match="Stopped ZeroTier One" --timeout=15
 
 #=================================================
 # UPGRADE DEPENDENCIES
