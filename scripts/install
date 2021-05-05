@@ -8,7 +8,6 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-source experimental_helpers/ynh_add_extra_apt_repos
 
 #=================================================
 # MANAGE SCRIPT FAILURE
@@ -48,7 +47,7 @@ app=$YNH_APP_INSTANCE_NAME
 ### Use the execution time, given by --time, to estimate the weight of a step.
 ### A common way to do it is to set a weight equal to the execution time in second +1.
 ### The execution time is given for the duration since the previous call. So the weight should be applied to this previous call.
-ynh_script_progression --message="Validating installation parameters..." --time --weight=1
+ynh_script_progression --message="Validating installation parameters..." --weight=1
 
 # Detect already-installed on Linux
 if [ -f /usr/sbin/zerotier-one ]; then
@@ -62,7 +61,7 @@ test ! -e "$final_path" || ynh_die --message="ZeroTier One directory already exi
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..." --time --weight=1
+ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 ynh_app_setting_set --app=$app --key=service --value=$service
@@ -72,7 +71,7 @@ ynh_app_setting_set --app=$app --key=service --value=$service
 #=================================================
 # FIND AND OPEN A PORT
 #=================================================
-ynh_script_progression --message="Configuring firewall..." --time --weight=1
+ynh_script_progression --message="Finding an available port..." --weight=1
 
 ### Use these lines if you have to open a port for the application
 ### `ynh_find_port` will find the first available port starting from the given port.
@@ -93,7 +92,7 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing dependencies..." --time --weight=1
+ynh_script_progression --message="Installing dependencies..." --weight=3
 
 ### `ynh_install_app_dependencies` allows you to add any "apt" dependencies to the package.
 ### Those deb packages will be installed as dependencies of this package.
@@ -103,8 +102,7 @@ ynh_script_progression --message="Installing dependencies..." --time --weight=1
 ###		- As well as the section "REINSTALL DEPENDENCIES" in the restore script
 ###		- And the section "UPGRADE DEPENDENCIES" in the upgrade script
 
-ynh_install_extra_repo --repo="deb ${ZT_BASE_URL_HTTP}debian/stretch stretch main" --key="https://raw.githubusercontent.com/zerotier/install.zerotier.com/master/htdocs/contact%40zerotier.com.gpg"
-ynh_install_app_dependencies $pkg_dependencies
+ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$version_codename $version_codename main" --key="https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg" --package="${pkg_zerotier}=${pkg_version}"
 
 #=================================================
 # SPECIFIC SETUP
@@ -118,7 +116,7 @@ ynh_replace_string "__PORT__" "$port" "$final_path/local.conf"
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --time --weight=1
+ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 ### `ynh_systemd_action` is used to start a systemd service for an app.
 ### Only needed if you have configure a systemd service
@@ -131,12 +129,12 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 # Enable a systemd service
 ynh_systemd_action --service_name=$service --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name=$service --action="restart" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=$service --action="restart"
 
 #=================================================
 # GENERATING IDENTITY
 #=================================================
-ynh_script_progression --message="Waiting for identity generation..." --time --weight=1
+ynh_script_progression --message="Waiting for identity generation..." --weight=2
 
 while [ ! -f /var/lib/zerotier-one/identity.secret ]; do
 	sleep 1
@@ -146,22 +144,6 @@ ynh_print_info "Identity generation done!"
 
 #=================================================
 # GENERIC FINALIZATION
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Configuring log rotation..." --time --weight=1
-
-### `ynh_use_logrotate` is used to configure a logrotate configuration for the logs of this app.
-### Use this helper only if there is effectively a log file for this app.
-### If you're not using this helper:
-###		- Remove the section "BACKUP LOGROTATE" in the backup script
-###		- Remove also the section "REMOVE LOGROTATE CONFIGURATION" in the remove script
-###		- As well as the section "RESTORE THE LOGROTATE CONFIGURATION" in the restore script
-###		- And the section "SETUP LOGROTATE" in the upgrade script
-
-# Use logrotate to manage application logfile(s)
-ynh_use_logrotate
-
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
@@ -174,7 +156,7 @@ ynh_use_logrotate
 ###		- Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
 ###		- As well as the section "ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
 
-yunohost service add $service --description "ZeroTier" --log "/var/log/$app/$app.log"
+yunohost service add $service --description "ZeroTier"
 
 ### With YunoHost 3.8 you will then be able to:
 ### - specify a list of ports that needs to be publicly exposed (c.f. --needs_exposed_ports)
@@ -197,4 +179,4 @@ ynh_print_info "You can install ztncui_ynh to get a web configuration interface 
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --time --last
+ynh_script_progression --message="Installation of $app completed" --last

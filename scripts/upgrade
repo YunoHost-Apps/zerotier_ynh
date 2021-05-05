@@ -8,12 +8,11 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-source experimental_helpers/ynh_add_extra_apt_repos
 
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --time --weight=1
+ynh_script_progression --message="Loading installation settings..." --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -35,12 +34,12 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --time --weight=1
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --time --weight=1
+ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=3
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -56,19 +55,18 @@ ynh_abort_if_errors
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --time --weight=1
+ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$service --action="stop" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=$service --action="stop" --log_path="systemd" --line_match="Stopped ZeroTier One" --timeout=15
 
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..." --time --weight=1
+ynh_script_progression --message="Upgrading dependencies..." --weight=3
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_install_extra_repo --repo="deb ${ZT_BASE_URL_HTTP}debian/stretch stretch main" --key="https://raw.githubusercontent.com/zerotier/install.zerotier.com/master/htdocs/contact%40zerotier.com.gpg"
-	ynh_install_app_dependencies $pkg_dependencies
+	ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$version_codename $version_codename main" --key="https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg" --package="${pkg_zerotier}=${pkg_version}"
 fi
 
 #=================================================
@@ -78,24 +76,30 @@ fi
 #=================================================
 
 #=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Upgrading logrotate configuration..." --time --weight=1
-
-# Use logrotate to manage app-specific logfile(s)
-ynh_use_logrotate --non-append
-
-#=================================================
 # GENERIC FINALIZATION
+#=================================================
+# INTEGRATE SERVICE IN YUNOHOST
+#=================================================
+
+### `yunohost service add` integrates a service in YunoHost. It then gets
+### displayed in the admin interface and through the others `yunohost service` commands.
+### (N.B. : this line only makes sense if the app adds a service to the system!)
+### If you're not using these lines:
+###             - You can remove these files in conf/.
+###             - Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
+###             - As well as the section "ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
+
+yunohost service add $service --description "ZeroTier"
+
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --time --weight=1
+ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$service --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=$service --action="start"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --time --last
+ynh_script_progression --message="Upgrade of $app completed" --last
