@@ -8,10 +8,10 @@
 		# No arguments in manifest
 	; Checks
 		pkg_linter=1
-		setup_sub_dir=1
+		setup_sub_dir=0
 		setup_root=0
-		setup_nourl=0
-		setup_private=1
+		setup_nourl=1
+		setup_private=0
 		setup_public=0
 		upgrade=1
 		upgrade=1	from_commit=016fe2d9aa430c6f06759b1d877bbe6cfc4f1acb
