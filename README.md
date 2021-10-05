@@ -11,7 +11,7 @@ If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to
 ## Overview
 Zerotier sets up Global Area Networks. It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
-**Shipped version:** 1.6.5
+**Shipped version:** 1.6.6
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt). Most personal and internal use cases are free. See their [pricing page](https://zerotier.com/pricing/) for more details.
 
