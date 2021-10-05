@@ -6,7 +6,7 @@
         "en": "A peer-to-peer VPN system",
         "fr": "Un VPN pair-à-pair"
     },
-    "version": "1.6.5~ynh1",
+    "version": "1.6.6~ynh1",
     "url": "https://www.zerotier.com/",
     "license": "non-free",
     "maintainer": {
