@@ -45,7 +45,6 @@ ynh_backup --src_path="$final_path"
 #=================================================
 # BACKUP SYSTEMD
 #=================================================
-ynh_print_info --message="Backing up systemd configuration..."
 
 ynh_backup --src_path="/lib/systemd/system/$service.service"
 
