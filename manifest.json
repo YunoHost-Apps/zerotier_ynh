@@ -8,6 +8,12 @@
     },
     "version": "1.8.1~ynh1",
     "url": "https://www.zerotier.com/",
+    "upstream": {
+        "license": "non-free",
+        "website": "https://www.zerotier.com/",
+        "admindoc": "https://docs.zerotier.com/",
+        "code": "https://github.com/zerotier/ZeroTierOne"
+    },
     "license": "non-free",
     "maintainer": {
         "name": "tituspijean",
