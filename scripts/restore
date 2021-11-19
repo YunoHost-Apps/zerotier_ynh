@@ -57,15 +57,6 @@ ynh_script_progression --message="Reinstalling dependencies..." --weight=3
 ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$version_codename $version_codename main" --key="https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg" --package="${pkg_zerotier}=${pkg_version}"
 
 #=================================================
-# RESTORE SYSTEMD
-#=================================================
-ynh_script_progression --message="Restoring the systemd configuration..." --weight=1
-
-mkdir -p "/lib/systemd/system"
-ynh_restore_file --origin_path="/lib/systemd/system/$service.service"
-systemctl enable $service --quiet
-
-#=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
 
