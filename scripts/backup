@@ -43,10 +43,6 @@ ynh_backup --src_path="$final_path"
 #=================================================
 # SPECIFIC BACKUP
 #=================================================
-# BACKUP SYSTEMD
-#=================================================
-
-ynh_backup --src_path="/lib/systemd/system/$service.service"
 
 #=================================================
 # END OF SCRIPT
