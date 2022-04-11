@@ -120,8 +120,7 @@ ynh_secure_remove --file="$tempdir"
 # SET THE PORT
 #=================================================
 
-cp ../conf/local.conf $final_path/
-ynh_replace_string "__PORT__" "$port" "$final_path/local.conf"
+ynh_add_config --template="local.conf" --destination="$final_path/local.conf"
 
 #=================================================
 # START SYSTEMD SERVICE
