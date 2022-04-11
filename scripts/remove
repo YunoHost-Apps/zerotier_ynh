@@ -37,9 +37,7 @@ fi
 #=================================================
 ynh_script_progression --message="Removing dependencies..." --weight=3
 
-# Remove metapackage and its dependencies
-ynh_remove_app_dependencies
-ynh_remove_extra_repo
+dpkg --remove zerotier-one
 
 #=================================================
 # REMOVE APP MAIN DIR

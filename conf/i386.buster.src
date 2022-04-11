@@ -1,0 +1,6 @@
+SOURCE_URL=https://download.zerotier.com/debian/buster/pool/main/z/zerotier-one/zerotier-one_1.8.7_i386.deb
+SOURCE_SUM=8ba014ac9403dee03afd861e113642960d8a1873b867ce4f31f9442c3c34aacf
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=deb
+SOURCE_FILENAME=zerotier-one.deb
+SOURCE_EXTRACT=false

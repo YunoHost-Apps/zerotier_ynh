@@ -1,0 +1,6 @@
+SOURCE_URL=https://download.zerotier.com/debian/bullseye/pool/main/z/zerotier-one/zerotier-one_1.8.7_armhf.deb
+SOURCE_SUM=ef27913f0fc6b7d813a1315b7b1d7e3ed10c56b991104da6801691d926ab4d28
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=deb
+SOURCE_FILENAME=zerotier-one.deb
+SOURCE_EXTRACT=false

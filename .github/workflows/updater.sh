@@ -44,11 +44,46 @@ elif git ls-remote -q --exit-code --heads https://github.com/$GITHUB_REPOSITORY.
 fi
 
 #=================================================
-# SPECIFIC UPDATE STEPS
+# UPDATE SOURCE FILES
 #=================================================
 
-# Replace version in _common.sh
-sed -i "s/pkg_version=.*/pkg_version=\"$version\"/g" scripts/_common.sh
+dists=(buster bullseye)
+archs=(amd64 arm64 armel armhf i386)
+
+# Let's loop over available Debian releases
+for dist in ${dists[@]}; do
+
+# Let's loop over available architectures
+for arch in ${archs[@]}; do
+
+echo "Handling asset for $arch and Debian $dist"
+
+# Create the temporary directory
+tempdir="$(mktemp -d)"
+
+# Download sources and calculate checksum
+url="https://download.zerotier.com/debian/${dist}/pool/main/z/zerotier-one/zerotier-one_${version}_${arch}.deb"
+filename="zerotier-one.deb"
+curl --silent -4 -L $url -o "$tempdir/$filename"
+checksum=$(sha256sum "$tempdir/$filename" | head -c 64)
+
+# Delete temporary directory
+rm -rf $tempdir
+
+# Rewrite source file
+cat <<EOT > conf/$arch.$dist.src
+SOURCE_URL=$url
+SOURCE_SUM=$checksum
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=deb
+SOURCE_FILENAME=$filename
+SOURCE_EXTRACT=false
+EOT
+echo "... conf/$arch.$dist.src updated"
+
+done
+
+done
 
 #=================================================
 # GENERIC FINALIZATION

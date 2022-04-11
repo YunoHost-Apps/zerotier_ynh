@@ -1,0 +1,6 @@
+SOURCE_URL=https://download.zerotier.com/debian/buster/pool/main/z/zerotier-one/zerotier-one_1.8.7_armel.deb
+SOURCE_SUM=3d0941500b0162a8516f860544bb97692219bb991010dfd1a8db01727a8845a8
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=deb
+SOURCE_FILENAME=zerotier-one.deb
+SOURCE_EXTRACT=false

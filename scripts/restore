@@ -54,7 +54,17 @@ ynh_restore_file --origin_path="$final_path"
 #=================================================
 ynh_script_progression --message="Reinstalling dependencies..." --weight=3
 
-ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$version_codename $version_codename main" --key="https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg" --package="${pkg_zerotier}=${pkg_version}"
+# Create a temporary directory
+tempdir="$(mktemp -d)"
+
+# Download deb file
+ynh_setup_source --source_id="$YNH_ARCH.$dist" --dest_dir="$tempdir"
+
+# Install deb
+ynh_exec_warn_less dpkg -i "$tempdir/zerotier-one.deb"
+
+# Delete the temporary directory
+ynh_secure_remove --file="$tempdir"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
