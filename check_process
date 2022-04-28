@@ -14,7 +14,8 @@
 		setup_private=0
 		setup_public=0
 		upgrade=1
-		upgrade=1	from_commit=016fe2d9aa430c6f06759b1d877bbe6cfc4f1acb
+		upgrade=0	from_commit=016fe2d9aa430c6f06759b1d877bbe6cfc4f1acb
+                upgrade=1       from_commit=94dc4ac2f18718a2a617b320a1639c6a5b2f165f
 		backup_restore=1
 		multi_instance=0
 		port_already_use=0
@@ -25,5 +26,8 @@ Notification=none
 ;;; Upgrade options
 	; commit=016fe2d9aa430c6f06759b1d877bbe6cfc4f1acb
 		name=v1.4.6
+		manifest_arg=&
+	; commit=94dc4ac2f18718a2a617b320a1639c6a5b2f165f
+		name=v1.8.4
 		manifest_arg=&
 
