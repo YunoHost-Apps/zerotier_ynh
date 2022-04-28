@@ -12,7 +12,7 @@ service="zerotier-one"
 
 # dependencies used by the app
 pkg_zerotier="zerotier-one"
-pkg_version="1.8.4"
+pkg_version="1.8.9"
 
 #=================================================
 # PERSONAL HELPERS
