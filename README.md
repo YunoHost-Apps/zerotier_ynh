@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # ZeroTier for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Working status](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)  
 [![Install ZeroTier with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zerotier)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -19,10 +19,7 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Shipped version:** 1.8.4~ynh1
-
-
-
+**Shipped version:** 1.10.0~ynh1
 ## Disclaimers / important information
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).
@@ -37,21 +34,22 @@ After creating a network, join it with `zerotier-cli join $the_networkd_id`.
 
 ## Documentation and resources
 
-* Official app website: https://www.zerotier.com/
-* Official admin documentation: https://docs.zerotier.com/
-* Upstream app code repository: https://github.com/zerotier/ZeroTierOne
-* YunoHost documentation for this app: https://yunohost.org/app_zerotier
-* Report a bug: https://github.com/YunoHost-Apps/zerotier_ynh/issues
+* Official app website: <https://www.zerotier.com/>
+* Official admin documentation: <https://docs.zerotier.com/>
+* Upstream app code repository: <https://github.com/zerotier/ZeroTierOne>
+* YunoHost documentation for this app: <https://yunohost.org/app_zerotier>
+* Report a bug: <https://github.com/YunoHost-Apps/zerotier_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/zerotier_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/zerotier_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade zerotier -u https://github.com/YunoHost-Apps/zerotier_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>
