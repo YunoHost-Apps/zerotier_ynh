@@ -23,12 +23,6 @@ service=$(ynh_app_setting_get --app=$app --key=service)
 # CHECK VERSION
 #=================================================
 
-### This helper will compare the version of the currently installed app and the version of the upstream package.
-### $upgrade_type can have 2 different values
-### - UPGRADE_APP if the upstream app version has changed
-### - UPGRADE_PACKAGE if only the YunoHost package has changed
-### ynh_check_app_version_changed will stop the upgrade if the app is up to date.
-### UPGRADE_APP should be used to upgrade the core app only if there's an upgrade to do.
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
@@ -80,14 +74,6 @@ fi
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
-
-### `yunohost service add` integrates a service in YunoHost. It then gets
-### displayed in the admin interface and through the others `yunohost service` commands.
-### (N.B. : this line only makes sense if the app adds a service to the system!)
-### If you're not using these lines:
-###             - You can remove these files in conf/.
-###             - Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
-###             - As well as the section "ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
 
 yunohost service add $service --description "ZeroTier"
 
