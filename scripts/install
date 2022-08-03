@@ -137,7 +137,7 @@ ynh_systemd_action --service_name=$service --action="restart"
 #=================================================
 ynh_script_progression --message="Waiting for identity generation..." --weight=2
 
-while [ ! -f /var/lib/zerotier-one/identity.secret ]; do
+while [ ! -f "$final_path/identity.secret" ]; do
 	sleep 1
 done
 
@@ -171,7 +171,7 @@ yunohost service add $service --description "ZeroTier"
 # DISPLAY ADDRESS
 #=================================================
 
-address=$(cat /var/lib/zerotier-one/identity.public | cut -d : -f 1)
+address=$(cat "$final_path/identity.public" | cut -d : -f 1)
 ynh_app_setting_set $app address $address
 ynh_print_info "Success! Your ZeroTier address is $address"
 ynh_print_info "You can install ztncui_ynh to get a web configuration interface for ZeroTier"
