@@ -110,7 +110,8 @@ ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$versi
 # SET THE PORT
 #=================================================
 
-cp ../conf/local.conf $final_path/
+mkdir -p "$final_path"
+cp ../conf/local.conf "$final_path/"
 ynh_replace_string "__PORT__" "$port" "$final_path/local.conf"
 
 #=================================================
