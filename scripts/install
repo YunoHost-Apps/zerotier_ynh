@@ -100,7 +100,7 @@ while [ ! -f "$final_path/identity.public" ]; do
 	sleep 1
 	count=$((count+1))
 	if [ $count -ge $timeout ]; then
-		ynh_print_warn --message="Identity generation timed out. Please report to YunoHost Support if your ZeroTier instance does not work."
+		ynh_print_warn --message="Identity generation timed out."
 		break
 	fi
 done
@@ -117,10 +117,14 @@ yunohost service add $service --description "ZeroTier"
 # DISPLAY ADDRESS
 #=================================================
 
-address=$(cat "$final_path/identity.public" | cut -d : -f 1)
-ynh_app_setting_set $app address $address
-ynh_print_info "Your ZeroTier address is $address"
-ynh_print_info "You can install ztncui_ynh to get a web configuration interface for ZeroTier"
+if [ -f "$final_path/identity.public" ]; then
+	address=$(cat "$final_path/identity.public" | cut -d : -f 1)
+	ynh_app_setting_set $app address $address
+	ynh_print_info "Your ZeroTier address is $address"
+	ynh_print_info "You can install ztncui_ynh to get a web configuration interface for ZeroTier"
+else
+	ynh_print_warn --message="Identity file is missing. Please report to YunoHost Support if your ZeroTier instance does not work."
+fi
 
 #=================================================
 # END OF SCRIPT

@@ -30,6 +30,14 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
+if [ -f "$final_path/identity.public" ]; then
+        address=$(cat "$final_path/identity.public" | cut -d : -f 1)
+        ynh_app_setting_set $app address $address
+        ynh_print_info "Your ZeroTier address is $address"
+else
+        ynh_print_warn --message="Identity file is missing. Please report to YunoHost Support if your ZeroTier instance does not work."
+fi
+
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
