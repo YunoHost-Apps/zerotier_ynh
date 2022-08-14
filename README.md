@@ -20,6 +20,7 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 
 **Shipped version:** 1.10.1~ynh1
+
 ## Disclaimers / important information
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).
