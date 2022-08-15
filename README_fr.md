@@ -19,7 +19,8 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Version incluse :** 1.10.1~ynh1
+**Version incluse :** 1.10.1~ynh1
+
 ## Avertissements / informations importantes
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).
