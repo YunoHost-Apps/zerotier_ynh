@@ -19,8 +19,7 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Shipped version:** 1.10.1~ynh1
-
+**Shipped version:** 1.10.2~ynh1
 ## Disclaimers / important information
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).
@@ -32,6 +31,12 @@ Use `zerotier-cli` to configure your connections. Your network address is a 10-c
 
 If you want to set a network up, use the [ztncui](https://github.com/YunoHost-Apps/ztncui_ynh) app.
 After creating a network, join it with `zerotier-cli join $the_networkd_id`.
+
+## :red_circle: Antifeatures
+
+- **Not totally free upstream**: The packaged app is under an overall free licence, but with clauses that restrict its use.
+
+- **Non-free Network Services**: Promotes or depends entirely on a non-free network service.
 
 ## Documentation and resources
 
