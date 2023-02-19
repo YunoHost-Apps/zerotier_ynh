@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # ZeroTier for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Working status](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Working status](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
+
 [![Install ZeroTier with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zerotier)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -19,7 +20,7 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Shipped version:** 1.10.2~ynh1
+**Shipped version:** 1.10.3~ynh1
 ## Disclaimers / important information
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).

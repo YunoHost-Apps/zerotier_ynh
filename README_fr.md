@@ -5,21 +5,22 @@ It shall NOT be edited by hand.
 
 # ZeroTier pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
+
 [![Installer ZeroTier avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zerotier)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer ZeroTier rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer ZeroTier rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Version incluse :** 1.10.2~ynh1
+**Version incluse :** 1.10.3~ynh1
 ## Avertissements / informations importantes
 
 **License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).
@@ -40,9 +41,9 @@ After creating a network, join it with `zerotier-cli join $the_networkd_id`.
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://www.zerotier.com/>
-* Documentation officielle de l'admin : <https://docs.zerotier.com/>
-* Dépôt de code officiel de l'app : <https://github.com/zerotier/ZeroTierOne>
+* Site officiel de l’app : <https://www.zerotier.com/>
+* Documentation officielle de l’admin : <https://docs.zerotier.com/>
+* Dépôt de code officiel de l’app : <https://github.com/zerotier/ZeroTierOne>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_zerotier>
 * Signaler un bug : <https://github.com/YunoHost-Apps/zerotier_ynh/issues>
 
@@ -58,4 +59,4 @@ ou
 sudo yunohost app upgrade zerotier -u https://github.com/YunoHost-Apps/zerotier_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
