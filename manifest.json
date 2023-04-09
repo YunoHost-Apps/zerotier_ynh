@@ -9,12 +9,12 @@
     "version": "1.10.6~ynh1",
     "url": "https://www.zerotier.com/",
     "upstream": {
-        "license": "non-free",
+        "license": "BUSL-1.1",
         "website": "https://www.zerotier.com/",
         "admindoc": "https://docs.zerotier.com/",
         "code": "https://github.com/zerotier/ZeroTierOne"
     },
-    "license": "non-free",
+    "license": "BUSL-1.1",
     "maintainer": {
         "name": "tituspijean",
         "email": "tituspijean@outlook.com"
