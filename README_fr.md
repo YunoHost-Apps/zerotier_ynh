@@ -44,7 +44,7 @@ After creating a network, join it with `zerotier-cli join $the_networkd_id`.
 * Site officiel de l’app : <https://www.zerotier.com/>
 * Documentation officielle de l’admin : <https://docs.zerotier.com/>
 * Dépôt de code officiel de l’app : <https://github.com/zerotier/ZeroTierOne>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_zerotier>
+* YunoHost Store: <https://apps.yunohost.org/app/zerotier>
 * Signaler un bug : <https://github.com/YunoHost-Apps/zerotier_ynh/issues>
 
 ## Informations pour les développeurs
