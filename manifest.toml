@@ -1,0 +1,46 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "zerotier"
+name = "ZeroTier"
+description.en = "A peer-to-peer VPN system"
+description.fr = "Un VPN pair-à-pair"
+
+version = "1.12.2~ynh1"
+
+maintainers = ["tituspijean"]
+
+[upstream]
+license = "BUSL-1.1"
+website = "https://www.zerotier.com/"
+admindoc = "https://docs.zerotier.com/"
+code = "https://github.com/zerotier/ZeroTierOne"
+cpe = "cpe:2.3:a:zerotier:zerotierone"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = false
+ldap = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "sso" key : the "ldap" key corresponds to wether or not a user *can* login on the app using its YunoHost credentials.
+sso = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "ldap" key : the "sso" key corresponds to wether or not a user is *automatically logged-in* on the app when logged-in on the YunoHost portal.
+disk = "50M" # FIXME: replace with an **estimate** minimum disk requirement. e.g. 20M, 400M, 1G, ...
+ram.build = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
+ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
+
+[install]
+
+[resources]
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+
+    [resources.ports]
+    main.default = 8095
+
+    [resources.apt.extras.zerotier]
+    repo = "deb https://download.zerotier.com/debian/bullseye bullseye main"
+    key = "https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg"
+    packages = ["zerotier-one=1.12.2"]
