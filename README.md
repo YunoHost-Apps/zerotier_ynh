@@ -21,18 +21,6 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 
 **Shipped version:** 1.12.2~ynh1
-## Disclaimers / important information
-
-**License:** [Business Source License 1.1](https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt).
-Most personal and internal use cases are free. See their [pricing page](https://zerotier.com/pricing/) for more details.
-
-This package only installs the ZeroTier service and sets it up.
-Use `zerotier-cli` to configure your connections. Your network address is a 10-character-long alphanumeric string,
- which displayed in the installation logs and can also be retrieved with `zerotier-cli info`.
-
-If you want to set a network up, use the [ztncui](https://github.com/YunoHost-Apps/ztncui_ynh) app.
-After creating a network, join it with `zerotier-cli join $the_networkd_id`.
-
 ## :red_circle: Antifeatures
 
 - **Not totally free upstream**: The packaged app is under an overall free licence, but with clauses that restrict its use.
