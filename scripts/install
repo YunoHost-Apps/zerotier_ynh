@@ -40,6 +40,9 @@ wait_seconds=30
 until [ -f "$install_dir/identity.public" ]; do
     sleep 1
     if [ "$((wait_seconds--))" -eq 0 ]; then
+        ynh_exec_warn systemctl status "$service"
+        ynh_exec_warn "$install_dir"
+
         ynh_die --message="Identity generation timed out."
     fi
 done
