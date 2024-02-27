@@ -10,121 +10,45 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
+# ADD A CONFIGURATION
 #=================================================
+ynh_script_progression --message="Adding $app's configuration file..." --weight=2
 
-ynh_clean_setup () {
-	### Remove this function if there's nothing to clean before calling the remove script.
-	true
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
-
-#=================================================
-# RETRIEVE ARGUMENTS FROM THE MANIFEST
-#=================================================
-
-app=$YNH_APP_INSTANCE_NAME
-
-#=================================================
-# CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
-#=================================================
-ynh_script_progression --message="Validating installation parameters..." --weight=1
-
-# Detect already-installed on Linux
-if [ -f /usr/sbin/zerotier-one ]; then
-	ynh_die --message="ZeroTier One appears to already be installed."
-fi
-
-# Detect already-installed on Linux
-final_path=/var/lib/zerotier-one
-test ! -e "$final_path" || ynh_die --message="ZeroTier One directory already exists"
-
-#=================================================
-# STORE SETTINGS FROM MANIFEST
-#=================================================
-ynh_script_progression --message="Storing installation settings..." --weight=1
-
-ynh_app_setting_set --app=$app --key=final_path --value=$final_path
-ynh_app_setting_set --app=$app --key=service --value=$service
-
-#=================================================
-# STANDARD MODIFICATIONS
-#=================================================
-# FIND AND OPEN A PORT
-#=================================================
-ynh_script_progression --message="Finding an available port..." --weight=1
-
-# Find an available port
-port=$(ynh_find_port --port=8095)
-ynh_app_setting_set --app=$app --key=port --value=$port
-
-# Open the port
-# ynh_exec_warn_less yunohost firewall allow --no-upnp TCP $port
-
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=3
-
-ynh_install_extra_app_dependencies  --repo="deb ${ZT_BASE_URL_HTTP}debian/$version_codename $version_codename main" --key="https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg" --package="${pkg_zerotier}=${pkg_version}"
-
-#=================================================
-# SPECIFIC SETUP
-#=================================================
-# SET THE PORT
-#=================================================
-
-mkdir -p "$final_path"
-cp ../conf/local.conf "$final_path/"
-ynh_replace_string "__PORT__" "$port" "$final_path/local.conf"
+ynh_add_config --template="local.conf" --destination="$data_dir/local.conf"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=2
+ynh_script_progression --message="Starting $app's systemd service..." --weight=2
 
 # Enable a systemd service
-ynh_systemd_action --service_name=$service --action="enable"
+ynh_systemd_action --service_name="$service" --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name=$service --action="restart"
+ynh_systemd_action --service_name="$service" --action="restart"
+
+yunohost service add "$service" --description "ZeroTier"
 
 #=================================================
 # GENERATING IDENTITY
 #=================================================
 ynh_script_progression --message="Waiting for identity generation..." --weight=2
 
-timeout=30
-count=0
-while [ ! -f "$final_path/identity.public" ]; do
-	sleep 1
-	count=$((count+1))
-	if [ $count -ge $timeout ]; then
-		ynh_print_warn --message="Identity generation timed out."
-		break
-	fi
+wait_seconds=30
+until [ -f "$data_dir/identity.public" ]; do
+    sleep 1
+    if [ "$((wait_seconds--))" -eq 0 ]; then
+        ynh_print_warn --message="Identity generation timed out."
+        break
+    fi
 done
 
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-
-yunohost service add $service --description "ZeroTier"
-
-#=================================================
-# DISPLAY ADDRESS
-#=================================================
-
-if [ -f "$final_path/identity.public" ]; then
-	address=$(cat "$final_path/identity.public" | cut -d : -f 1)
-	ynh_app_setting_set $app address $address
-	ynh_print_info "Your ZeroTier address is $address"
-	ynh_print_info "You can install ztncui_ynh to get a web configuration interface for ZeroTier"
+if [ -f "$data_dir/identity.public" ]; then
+    address=$(cut -d : -f 1 "$data_dir/identity.public")
+    ynh_app_setting_set --app="$app" --key="address" --value="$address"
 else
-	ynh_print_warn --message="Identity file is missing. Please report to YunoHost Support if your ZeroTier instance does not work."
+    ynh_app_setting_set --app="$app" --key="address" --value="unknown"
 fi
+
 
 #=================================================
 # END OF SCRIPT
