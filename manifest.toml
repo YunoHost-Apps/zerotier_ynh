@@ -43,4 +43,4 @@ ram.runtime = "100M"
     [resources.apt.extras.zerotier]
     repo = "deb https://download.zerotier.com/debian/__YNH_DEBIAN_VERSION__ __YNH_DEBIAN_VERSION__ main"
     key = "https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg"
-    packages = ["zerotier-one=1.12.2"]
+    packages = ["zerotier-one=__YNH_APP_UPSTREAM_VERSION__"]
