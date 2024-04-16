@@ -20,11 +20,11 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Version incluse :** 1.12.2~ynh1
+**Version incluse :** 1.12.2~ynh2
 ## :red_circle: Anti-fonctionnalités
 
-- **Services réseau non libres**: Promeut ou utilise des services réseau non libres.
-- **Application sous licence libre restreinte**: L'application packagée est sous une licence globalement libre, mais avec des clauses qui pourraient restreindre son utilisation.
+- **Services réseau non libres **: Promeut ou utilise des services réseau non libres.
+- **Application sous licence libre restreinte **: L'application packagée est sous une licence globalement libre, mais avec des clauses qui pourraient restreindre son utilisation.
 
 ## Documentations et ressources
 
