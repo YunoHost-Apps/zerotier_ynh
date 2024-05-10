@@ -21,10 +21,10 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 
 **Versión proporcionada:** 1.12.2~ynh2
-## :red_circle: Caraterísticas cuestionables
+## :red_circle: Debes considerar
 
 - **Non-free Network Services**: Promotes or depends entirely on a non-free network service.
-- **Not totally free upstream**: The packaged app is under an overall free licence, but with clauses that restrict its use.
+- **Not totally free upstream**: The packaged app is under an overall free license, but with clauses that may restrict its use.
 
 ## Documentación e recursos
 

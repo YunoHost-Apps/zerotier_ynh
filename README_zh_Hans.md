@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 ZeroTier
+# YunoHost 上的 ZeroTier
 
 [![集成程度](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![工作状态](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
 
@@ -24,7 +24,7 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 ## :red_circle: 负面特征
 
 - **Non-free Network Services**: Promotes or depends entirely on a non-free network service.
-- **Not totally free upstream**: The packaged app is under an overall free licence, but with clauses that restrict its use.
+- **Not totally free upstream**: The packaged app is under an overall free license, but with clauses that may restrict its use.
 
 ## 文档与资源
 
