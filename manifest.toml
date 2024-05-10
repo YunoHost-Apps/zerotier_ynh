@@ -7,7 +7,7 @@ name = "ZeroTier"
 description.en = "A peer-to-peer VPN system"
 description.fr = "Un VPN pair-à-pair"
 
-version = "1.12.2~ynh2"
+version = "1.14.0~ynh1"
 
 maintainers = ["tituspijean"]
 
