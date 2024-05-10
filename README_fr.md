@@ -21,6 +21,7 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 
 **Version incluse :** 1.14.0~ynh1
+
 ## :red_circle: Anti-fonctionnalités
 
 - **Services réseau non libres **: Promeut ou utilise des services réseau non libres.

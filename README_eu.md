@@ -21,6 +21,7 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 
 **Paketatutako bertsioa:** 1.14.0~ynh1
+
 ## :red_circle: Ezaugarri zalantzagarriak
 
 - **Libreak ez diren sareko zerbitzuak**: Librea ez den sare-zerbitzu bat sustatzen du edo horren mende dago erabat.
