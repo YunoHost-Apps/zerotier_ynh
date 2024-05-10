@@ -20,7 +20,7 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Paketatutako bertsioa:** 1.12.2~ynh2
+**Paketatutako bertsioa:** 1.14.0~ynh1
 ## :red_circle: Ezaugarri zalantzagarriak
 
 - **Libreak ez diren sareko zerbitzuak**: Librea ez den sare-zerbitzu bat sustatzen du edo horren mende dago erabat.

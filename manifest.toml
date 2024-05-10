@@ -7,7 +7,7 @@ name = "ZeroTier"
 description.en = "A peer-to-peer VPN system"
 description.fr = "Un VPN pair-à-pair"
 
-version = "1.12.2~ynh2"
+version = "1.14.0~ynh1"
 
 maintainers = ["tituspijean"]
 
@@ -31,6 +31,13 @@ ram.runtime = "100M"
 [install]
 
 [resources]
+    [resources.sources.main]
+    # Unused source, only to trigger the autoupdater
+    prefetch = false
+    url = "https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.14.0.tar.gz"
+    sha256 = "7191623a81b0d1b552b9431e8864dd3420783ee518394ac1376cee6aaf033291"
+    autoupdate.strategy = "latest_github_release"
+
     [resources.system_user]
 
     [resources.install_dir]
@@ -41,6 +48,6 @@ ram.runtime = "100M"
     main.default = 8095
 
     [resources.apt.extras.zerotier]
-    repo = "deb https://download.zerotier.com/debian/bullseye bullseye main"
+    repo = "deb https://download.zerotier.com/debian/__YNH_DEBIAN_VERSION__ __YNH_DEBIAN_VERSION__ main"
     key = "https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg"
-    packages = ["zerotier-one=1.12.2"]
+    packages = ["zerotier-one=__YNH_APP_UPSTREAM_VERSION__"]
