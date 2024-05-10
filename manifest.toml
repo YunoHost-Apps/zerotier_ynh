@@ -31,6 +31,13 @@ ram.runtime = "100M"
 [install]
 
 [resources]
+    [resources.sources.main]
+    # Unused source, only to trigger the autoupdater
+    prefetch = false
+    url = "https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.14.0.tar.gz"
+    sha256 = "7191623a81b0d1b552b9431e8864dd3420783ee518394ac1376cee6aaf033291"
+    autoupdate.strategy = "latest_github_release"
+
     [resources.system_user]
 
     [resources.install_dir]
