@@ -19,9 +19,9 @@ name = "Networks"
         [main.node.join]
         ask = "Join a network"
         type = "string"
-        help = "Indicate here the network ID (16-character-long hexadecimal string)"
+        help = "Enter here the network ID (16-character-long hexadecimal string)"
 
         [main.node.leave]
         ask = "Leave a network"
         type = "string"
-        help = "Indicate here the network ID (16-character-long hexadecimal string)"
+        help = "Enter here the network ID (16-character-long hexadecimal string)"
