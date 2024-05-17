@@ -42,6 +42,9 @@ ram.runtime = "100M"
 
     [resources.install_dir]
 
+    [resources.data_dir]
+    dir = "/var/lib/zerotier-one"
+
     [resources.permissions]
 
     [resources.ports]
