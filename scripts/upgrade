@@ -15,10 +15,10 @@ source /usr/share/yunohost/helpers
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # Dummy variables to be able to use the configuration panel
-if [ -z "$join" ]; then
+if [ -z "${join:-}" ]; then
      ynh_app_setting_set --app=$app --key=join --value=""
 fi
-if [ -z "$leave" ]; then
+if [ -z "${leave:-}" ]; then
      ynh_app_setting_set --app=$app --key=leave --value=""
 fi
 
