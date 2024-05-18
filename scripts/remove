@@ -23,6 +23,9 @@ fi
 # Remove the app binary securely
 ynh_secure_remove --file="/usr/sbin/zerotier-one"
 
+# Remove the app binary securely
+ynh_secure_remove --file="$data_dir"
+
 # Remove the app-specific logrotate config
 ynh_remove_logrotate
 
