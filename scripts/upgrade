@@ -42,7 +42,7 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
 
     wait_seconds=30
-    until [ -f "$install_dir/identity.public" ]; do
+    until [ -f "$data_dir/identity.public" ]; do
         sleep 1
         if [ "$((wait_seconds--))" -eq 0 ]; then
             ynh_print_warn --message="Identity generation timed out."
@@ -50,7 +50,7 @@ if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
         fi
     done
 
-    if [ -f "$install_dir/identity.public" ]; then
+    if [ -f "$data_dir/identity.public" ]; then
         address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
         ynh_app_setting_set --app="$app" --key="address" --value="$address"
     else

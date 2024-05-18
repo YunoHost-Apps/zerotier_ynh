@@ -41,10 +41,6 @@ ram.runtime = "100M"
     [resources.system_user]
 
     [resources.install_dir]
-<<<<<<< HEAD
-    dir = "/var/lib/zerotier-one"
-=======
->>>>>>> parent of 5d892ab (Properly declare data_dir)
 
     [resources.permissions]
 
