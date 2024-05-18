@@ -5,6 +5,7 @@
 #=================================================
 
 service="zerotier-one"
+data_dir="/var/lib/zerotier-one"
 
 #=================================================
 # PERSONAL HELPERS
