@@ -1,5 +1,10 @@
-Use `zerotier-cli` to configure your connections. Your network address is a 10-character-long alphanumeric string,
-which displayed in the installation logs and can also be retrieved with `zerotier-cli info`.
+## Basic networking
 
-If you want to set a network up, use the [ztncui](https://github.com/YunoHost-Apps/ztncui_ynh) app.
-After creating a network, join it with `zerotier-cli join $the_networkd_id`.
+You can get your node address, as well as list, join, and leave networks from the "Networks" configuration panel above.
+
+## Advanced configuration
+
+Open a terminal and use the `zerotier-cli` command. Refer to ZeroTier's documentation for more information.
+
+## Configuring your own network
+If you want to set a network up, use the [zeroui](https://apps.yunohost.org/app/zeroui) app.

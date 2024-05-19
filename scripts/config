@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source /usr/share/yunohost/helpers
+
+ynh_abort_if_errors
+
+#=================================================
+# SPECIFIC GETTERS FOR TOML SHORT KEY
+#=================================================
+
+get__address() {
+    local address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
+
+    cat << EOF
+style: info
+ask:
+  en: Your ZeroTier address is \`$address\`.
+EOF
+}
+
+get__networks() {
+    local networks=$(zerotier-cli listnetworks)
+    networks=${networks//$'\n'/$'\n    '}
+
+    cat << EOF
+style: info
+ask:
+  en: |
+    Here is the output of \`zerotier-cli listnetworks\`:
+    \`\`\`
+    $networks
+    \`\`\`
+EOF
+}
+
+validate_network() {
+    if ! [[ $1 =~ ^[0-9A-Fa-f]{16} ]]
+    then
+        echo "A network address is a hexadecimal string of 16 characters"
+    fi
+}
+
+validate__join() {
+    validate_network $join
+}
+
+validate__leave() {
+    validate_network $leave
+}
+
+set__join() {
+    zerotier-cli join "${join:0:16}"
+}
+
+set__leave() {
+    zerotier-cli leave "${leave:0:16}"
+}
+
+#=================================================
+# GENERIC FINALIZATION
+#=================================================
+ynh_app_config_run "$1"
