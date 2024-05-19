@@ -22,6 +22,7 @@ ynh_app_setting_set --app=$app --key=leave --value=""
 #=================================================
 ynh_script_progression --message="Adding $app's configuration file..." --weight=2
 
+mkdir -p "$data_dir"
 ynh_add_config --template="local.conf" --destination="$data_dir/local.conf"
 
 #=================================================
