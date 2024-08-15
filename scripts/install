@@ -10,10 +10,19 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
+# Dummy variables to be able to use the configuration panel
+ynh_app_setting_set --app=$app --key=join --value=""
+ynh_app_setting_set --app=$app --key=leave --value=""
+
+#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding $app's configuration file..." --weight=2
 
+mkdir -p "$data_dir"
 ynh_add_config --template="local.conf" --destination="$data_dir/local.conf"
 
 #=================================================
@@ -43,7 +52,7 @@ until [ -f "$data_dir/identity.public" ]; do
 done
 
 if [ -f "$data_dir/identity.public" ]; then
-    address=$(cut -d : -f 1 "$data_dir/identity.public")
+    address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
     ynh_app_setting_set --app="$app" --key="address" --value="$address"
 else
     ynh_app_setting_set --app="$app" --key="address" --value="unknown"

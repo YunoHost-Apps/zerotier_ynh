@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # ZeroTier YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/zerotier.svg)](https://ci-apps.yunohost.org/ci/apps/zerotier/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
 
 [![Instalatu ZeroTier YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zerotier)
 
@@ -20,7 +20,7 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Paketatutako bertsioa:** 1.14.0~ynh1
+**Paketatutako bertsioa:** 1.14.0~ynh2
 ## :red_circle: Ezaugarri zalantzagarriak
 
 - **Libreak ez diren sareko zerbitzuak**: Librea ez den sare-zerbitzu bat sustatzen du edo horren mende dago erabat.
