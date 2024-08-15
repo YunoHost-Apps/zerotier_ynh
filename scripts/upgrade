@@ -10,6 +10,19 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# Dummy variables to be able to use the configuration panel
+if [ -z "${join:-}" ]; then
+     ynh_app_setting_set --app=$app --key=join --value=""
+fi
+if [ -z "${leave:-}" ]; then
+     ynh_app_setting_set --app=$app --key=leave --value=""
+fi
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting $app's systemd service..." --weight=2
@@ -38,7 +51,7 @@ if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
     done
 
     if [ -f "$data_dir/identity.public" ]; then
-        address=$(cut -d : -f 1 "$data_dir/identity.public")
+        address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
         ynh_app_setting_set --app="$app" --key="address" --value="$address"
     else
         ynh_print_warn --message="Identity file is missing. Please report to YunoHost Support if your ZeroTier instance does not work."
