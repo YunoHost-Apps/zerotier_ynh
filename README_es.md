@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # ZeroTier para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/zerotier.svg)](https://ci-apps.yunohost.org/ci/apps/zerotier/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
 
 [![Instalar ZeroTier con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zerotier)
 
@@ -21,7 +21,7 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 
 **Versión actual:** 1.14.0~ynh2
-## :red_circle: funcionalidades no deseadas
+## :red_circle: Características no deseables
 
 - **Non-free Network Services**: Promotes or depends entirely on a non-free network service.
 - **Not totally free upstream**: The packaged app is under an overall free license, but with clauses that may restrict its use.

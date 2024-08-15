@@ -5,7 +5,7 @@ NON debe editarse manualmente.
 
 # ZeroTier para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/zerotier.svg)](https://dash.yunohost.org/appci/app/zerotier) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/zerotier.svg)](https://ci-apps.yunohost.org/ci/apps/zerotier/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/zerotier.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/zerotier.maintain.svg)
 
 [![Instalar ZeroTier con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zerotier)
 
