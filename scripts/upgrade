@@ -1,43 +1,37 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+ynh_script_progression "Ensuring downward compatibility..."
 
 # Dummy variables to be able to use the configuration panel
 if [ -z "${join:-}" ]; then
-     ynh_app_setting_set --app=$app --key=join --value=""
+     ynh_app_setting_set --key=join --value=""
 fi
 if [ -z "${leave:-}" ]; then
-     ynh_app_setting_set --app=$app --key=leave --value=""
+     ynh_app_setting_set --key=leave --value=""
 fi
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting $app's systemd service..." --weight=2
+ynh_script_progression "Starting $app's systemd service..."
 
 # Enable a systemd service
-ynh_systemd_action --service_name="$service" --action="enable"
+ynh_systemctl --service="$service" --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name="$service" --action="restart"
+ynh_systemctl --service="$service" --action="restart"
 
 yunohost service add "$service" --description "ZeroTier"
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+ynh_script_progression "Ensuring downward compatibility..."
 
 if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
 
@@ -45,16 +39,16 @@ if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
     until [ -f "$data_dir/identity.public" ]; do
         sleep 1
         if [ "$((wait_seconds--))" -eq 0 ]; then
-            ynh_print_warn --message="Identity generation timed out."
+            ynh_print_warn "Identity generation timed out."
             break
         fi
     done
 
     if [ -f "$data_dir/identity.public" ]; then
         address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
-        ynh_app_setting_set --app="$app" --key="address" --value="$address"
+        ynh_app_setting_set --key="address" --value="$address"
     else
-        ynh_print_warn --message="Identity file is missing. Please report to YunoHost Support if your ZeroTier instance does not work."
+        ynh_print_warn "Identity file is missing. Please report to YunoHost Support if your ZeroTier instance does not work."
     fi
 fi
 
@@ -62,4 +56,4 @@ fi
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
