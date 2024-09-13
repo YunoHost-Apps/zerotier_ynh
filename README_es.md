@@ -20,7 +20,7 @@ Zerotier sets up Global Area Networks.
 It is basically an alternative to OpenVPN, where the devices are not dependent on a main VPN server but are connected peer-to-peer.
 
 
-**Versión actual:** 1.14.0~ynh2
+**Versión actual:** 1.14.1~ynh1
 ## :red_circle: Características no deseables
 
 - **Non-free Network Services**: Promotes or depends entirely on a non-free network service.
@@ -36,7 +36,7 @@ It is basically an alternative to OpenVPN, where the devices are not dependent o
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/zerotier_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/zerotier_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
