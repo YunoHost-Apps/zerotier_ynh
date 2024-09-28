@@ -6,8 +6,6 @@
 
 source /usr/share/yunohost/helpers
 
-ynh_abort_if_errors
-
 #=================================================
 # SPECIFIC GETTERS FOR TOML SHORT KEY
 #=================================================
@@ -60,7 +58,5 @@ set__leave() {
     zerotier-cli leave "${leave:0:16}"
 }
 
-#=================================================
-# GENERIC FINALIZATION
 #=================================================
 ynh_app_config_run "$1"

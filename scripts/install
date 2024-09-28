@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -14,53 +8,52 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 # Dummy variables to be able to use the configuration panel
-ynh_app_setting_set --app=$app --key=join --value=""
-ynh_app_setting_set --app=$app --key=leave --value=""
+ynh_app_setting_set --key=join --value=""
+ynh_app_setting_set --key=leave --value=""
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding $app's configuration file..." --weight=2
+ynh_script_progression "Adding $app's configuration file..."
 
 mkdir -p "$data_dir"
-ynh_add_config --template="local.conf" --destination="$data_dir/local.conf"
+ynh_config_add --template="local.conf" --destination="$data_dir/local.conf"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting $app's systemd service..." --weight=2
+ynh_script_progression "Starting $app's systemd service..."
 
 # Enable a systemd service
-ynh_systemd_action --service_name="$service" --action="enable"
+ynh_systemctl --service="$service" --action="enable"
 # Start a systemd service
-ynh_systemd_action --service_name="$service" --action="restart"
+ynh_systemctl --service="$service" --action="restart"
 
 yunohost service add "$service" --description "ZeroTier"
 
 #=================================================
 # GENERATING IDENTITY
 #=================================================
-ynh_script_progression --message="Waiting for identity generation..." --weight=2
+ynh_script_progression "Waiting for identity generation..."
 
 wait_seconds=30
 until [ -f "$data_dir/identity.public" ]; do
     sleep 1
     if [ "$((wait_seconds--))" -eq 0 ]; then
-        ynh_print_warn --message="Identity generation timed out."
+        ynh_print_warn "Identity generation timed out."
         break
     fi
 done
 
 if [ -f "$data_dir/identity.public" ]; then
     address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
-    ynh_app_setting_set --app="$app" --key="address" --value="$address"
+    ynh_app_setting_set --key="address" --value="$address"
 else
-    ynh_app_setting_set --app="$app" --key="address" --value="unknown"
+    ynh_app_setting_set --key="address" --value="unknown"
 fi
-
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"

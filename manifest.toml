@@ -19,7 +19,8 @@ code = "https://github.com/zerotier/ZeroTierOne"
 cpe = "cpe:2.3:a:zerotier:zerotierone"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.18"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 ldap = "not_relevant"
