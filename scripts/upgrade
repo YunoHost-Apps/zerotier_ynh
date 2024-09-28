@@ -17,19 +17,6 @@ if [ -z "${leave:-}" ]; then
 fi
 
 #=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
-
-# Dummy variables to be able to use the configuration panel
-if [ -z "${join:-}" ]; then
-     ynh_app_setting_set --app=$app --key=join --value=""
-fi
-if [ -z "${leave:-}" ]; then
-     ynh_app_setting_set --app=$app --key=leave --value=""
-fi
-
-#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
@@ -49,7 +36,7 @@ ynh_script_progression "Ensuring downward compatibility..."
 if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
 
     wait_seconds=30
-    until [ -f "$data_dir/identity.public" ]; do
+    until [ -f "$install_dir/identity.public" ]; do
         sleep 1
         if [ "$((wait_seconds--))" -eq 0 ]; then
             ynh_print_warn "Identity generation timed out."
@@ -57,7 +44,7 @@ if [[ -z "${address:-}" ]] || [[ "$address" == "unknown" ]]; then
         fi
     done
 
-    if [ -f "$data_dir/identity.public" ]; then
+    if [ -f "$install_dir/identity.public" ]; then
         address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
         ynh_app_setting_set --key="address" --value="$address"
     else

@@ -5,4 +5,4 @@
 #=================================================
 
 service="zerotier-one"
-data_dir="/var/lib/zerotier-one"
+#data_dir="/var/lib/zerotier-one"

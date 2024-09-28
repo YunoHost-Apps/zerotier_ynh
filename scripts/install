@@ -24,8 +24,7 @@ ynh_app_setting_set --app=$app --key=leave --value=""
 #=================================================
 ynh_script_progression "Adding $app's configuration file..."
 
-mkdir -p "$data_dir"
-ynh_config_add --template="local.conf" --destination="$data_dir/local.conf"
+ynh_config_add --template="local.conf" --destination="$install_dir/local.conf"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -45,7 +44,7 @@ yunohost service add "$service" --description "ZeroTier"
 ynh_script_progression "Waiting for identity generation..."
 
 wait_seconds=30
-until [ -f "$data_dir/identity.public" ]; do
+until [ -f "$install_dir/identity.public" ]; do
     sleep 1
     if [ "$((wait_seconds--))" -eq 0 ]; then
         ynh_print_warn "Identity generation timed out."
@@ -53,7 +52,7 @@ until [ -f "$data_dir/identity.public" ]; do
     fi
 done
 
-if [ -f "$data_dir/identity.public" ]; then
+if [ -f "$install_dir/identity.public" ]; then
     address=$(echo "$(zerotier-cli info)" | cut -d " " -f 3)
     ynh_app_setting_set --key="address" --value="$address"
 else

@@ -7,7 +7,6 @@ source /usr/share/yunohost/helpers
 ynh_print_info "Declaring files to be backed up..."
 
 ynh_backup "$install_dir"
-ynh_backup "$data_dir"
 
 #=================================================
 # END OF SCRIPT
