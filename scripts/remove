@@ -20,6 +20,9 @@ ynh_safe_rm "/usr/sbin/zerotier-one"
 # Remove the app binary securely
 ynh_safe_rm "$data_dir"
 
+# Remove the app binary securely
+ynh_secure_remove --file="$data_dir"
+
 # Remove the app-specific logrotate config
 ynh_config_remove_logrotate
 

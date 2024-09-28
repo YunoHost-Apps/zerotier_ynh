@@ -12,6 +12,14 @@ ynh_app_setting_set --key=join --value=""
 ynh_app_setting_set --key=leave --value=""
 
 #=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
+# Dummy variables to be able to use the configuration panel
+ynh_app_setting_set --app=$app --key=join --value=""
+ynh_app_setting_set --app=$app --key=leave --value=""
+
+#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression "Adding $app's configuration file..."

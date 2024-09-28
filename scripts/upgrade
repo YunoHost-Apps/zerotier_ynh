@@ -17,6 +17,19 @@ if [ -z "${leave:-}" ]; then
 fi
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# Dummy variables to be able to use the configuration panel
+if [ -z "${join:-}" ]; then
+     ynh_app_setting_set --app=$app --key=join --value=""
+fi
+if [ -z "${leave:-}" ]; then
+     ynh_app_setting_set --app=$app --key=leave --value=""
+fi
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."

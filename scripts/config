@@ -58,5 +58,4 @@ set__leave() {
     zerotier-cli leave "${leave:0:16}"
 }
 
-#=================================================
 ynh_app_config_run "$1"
