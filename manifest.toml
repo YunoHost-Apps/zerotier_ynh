@@ -49,6 +49,9 @@ ram.runtime = "100M"
     [resources.ports]
     main.default = 8095
 
+    [resources.apt]
+    packages = []
+
     [resources.apt.extras.zerotier]
     repo = "deb https://download.zerotier.com/debian/__YNH_DEBIAN_VERSION__ __YNH_DEBIAN_VERSION__ main"
     key = "https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg"
