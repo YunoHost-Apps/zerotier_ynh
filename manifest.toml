@@ -7,7 +7,7 @@ name = "ZeroTier"
 description.en = "A peer-to-peer VPN system"
 description.fr = "Un VPN pair-à-pair"
 
-version = "1.16.1~ynh1"
+version = "1.16.2~ynh1"
 
 maintainers = ["tituspijean"]
 
@@ -35,8 +35,8 @@ ram.runtime = "100M"
     [resources.sources.main]
     # Unused source, only to trigger the autoupdater
     prefetch = false
-    url = "https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.16.0.tar.gz"
-    sha256 = "aa9de313d365bf0efb3871aaa56f2d323a08f46df47b627c4eff4f4203fa7fc5"
+    url = "https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.16.2.tar.gz"
+    sha256 = "2c607f573c6e38815433af289d364a689a203b18b51125f06c4472014d0657f0"
     autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
